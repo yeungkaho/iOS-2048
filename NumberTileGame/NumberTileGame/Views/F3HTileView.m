@@ -58,7 +58,7 @@
     if (delegate) {
         self.backgroundColor = [delegate tileColorForValue:self.tileValue];
         self.numberLabel.textColor = [delegate numberColorForValue:self.tileValue];
-        self.numberLabel.font = [delegate fontForNumbers];
+        self.numberLabel.font = [delegate fontForNumbers:self.tileValue];
     }
 }
 
@@ -68,6 +68,7 @@
     if (self.delegate) {
         self.backgroundColor = [self.delegate tileColorForValue:tileValue];
         self.numberLabel.textColor = [self.delegate numberColorForValue:tileValue];
+        self.numberLabel.font = [self.delegate fontForNumbers:self.tileValue];
     }
     self.value = tileValue;
 }

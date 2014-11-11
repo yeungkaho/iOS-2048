@@ -53,6 +53,16 @@
 #pragma mark - Controller Lifecycle
 
 - (void)setupSwipeControls {
+    UILabel *help;
+    help = [[UILabel alloc] initWithFrame:CGRectMake(71, 60, 180, 40)];
+    help.text = @"Swipe up with 3 fingers to reset game,or down to exit to main menu";
+    help.textColor = [UIColor lightGrayColor];
+    [help setFont:[UIFont systemFontOfSize:10]];
+    [help setTextAlignment:NSTextAlignmentCenter];
+    help.numberOfLines = 0;
+    help.lineBreakMode = UILineBreakModeCharacterWrap;
+    
+    [self.view addSubview:help];
     UISwipeGestureRecognizer *upSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                                                   action:@selector(upButtonTapped)];
     upSwipe.numberOfTouchesRequired = 1;
@@ -76,6 +86,18 @@
     rightSwipe.numberOfTouchesRequired = 1;
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:rightSwipe];
+    
+    UISwipeGestureRecognizer *resetSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                  action:@selector(resetButtonTapped)];
+    resetSwipe.numberOfTouchesRequired = 3;
+    resetSwipe.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:resetSwipe];
+    
+    UISwipeGestureRecognizer *exitSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:@selector(exitButtonTapped)];
+    exitSwipe.numberOfTouchesRequired = 3;
+    exitSwipe.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:exitSwipe];
 }
 
 - (void)setupGame {
@@ -99,7 +121,7 @@
         controlView = [F3HControlView controlViewWithCornerRadius:6
                                                   backgroundColor:[UIColor blackColor]
                                                   movementButtons:YES
-                                                       exitButton:NO
+                                                       exitButton:YES
                                                          delegate:self];
         totalHeight += (ELEMENT_SPACING + controlView.bounds.size.height);
         self.controlView = controlView;
@@ -162,6 +184,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setupGame];
 }
 

@@ -45,8 +45,37 @@
     }
 }
 
-- (UIFont *)fontForNumbers {
-    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
-}
+- (UIFont *)fontForNumbers:(NSUInteger)value {
+    switch (value) {
+        case 2:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
+        case 4:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
+        case 8:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
+        case 16:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
+        case 32:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
+        case 64:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
+        case 128:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
+        case 256:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
+        case 512:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
+        case 1024:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
+        case 2048:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
+        case 4096:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
+        case 8192:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:10];
+        default:
+            return [UIFont fontWithName:@"HelveticaNeue-Bold" size:8];
+    }
+    }
 
 @end
