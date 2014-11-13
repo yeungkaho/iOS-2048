@@ -15,21 +15,26 @@
 @property (strong, nonatomic) IBOutlet UITextField *targetTF;
 @property (strong, nonatomic) IBOutlet UIStepper *targetStepper;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *swipeOrButton;
-@property (nonatomic)  unsigned long long target;
+@property (nonatomic)  NSUInteger target;
 @end
 
 @implementation F3HViewController
 @synthesize target = _target;
 
-- (void)setTarget:(unsigned long long)target{
+- (void)setTarget:(NSUInteger)target{
     _target = target;
-    self.targetTF.text = [NSString stringWithFormat:@"%lld",_target];
+    self.targetTF.text = [NSString stringWithFormat:@"%llu",(unsigned long long)_target];
 }
 
 - (IBAction)dimensionSteped:(UIStepper *)sender {
-    self.targetStepper.maximumValue = sender.value*sender.value+1>=64?62:sender.value*sender.value+1;
+    if (sizeof(NSUInteger)==4) {
+        self.targetStepper.maximumValue = sender.value*sender.value+1>=32?30:sender.value*sender.value+1;
+    }else{
+        self.targetStepper.maximumValue = sender.value*sender.value+1>=64?62:sender.value*sender.value+1;
+    }
     self.target = pow(2, self.targetStepper.value);
     self.dimensionTF.text = [NSString stringWithFormat:@"%d",(int)sender.value];
+
     
 }
 - (IBAction)targetStepped:(UIStepper *)sender {
